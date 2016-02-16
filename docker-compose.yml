@@ -1,0 +1,14 @@
+build_packages:
+  build: .
+  dockerfile: /docker/builder/Dockerfile
+  command: bash -c 'build_deb_package'
+  volumes:
+    - .:/root/simplenet
+    - ./simplenet_packages:/root/simplenet-packages
+
+services:
+  build: .
+  dockerfile: /docker/runner/Dockerfile
+  command: /bin/bash
+  volumes:
+    - ./simplenet_packages:/tmp/simplenet_packages
